@@ -1,0 +1,16 @@
+# project stuff
+node_modules
+dist
+dist-ssr
+
+# ide stuff
+.idea
+.vscode
+
+# other stuff
+.env
+*.log
+.DS_Store
+
+
+*.local
