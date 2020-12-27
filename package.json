@@ -2,8 +2,9 @@
   "name": "zetsu",
   "private": true,
   "scripts": {
-    "dev": "sh .bin/sugar.sh dev",
-    "build": "sh .bin/sugar.sh build"
+    "dev": "sh .bin/run.sh dev",
+    "build": "sh .bin/run.sh build",
+    "app": "sh .bin/play.sh app"
   },
   "workspaces": {
     "packages": [

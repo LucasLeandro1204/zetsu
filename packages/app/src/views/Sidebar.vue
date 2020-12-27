@@ -1,11 +1,8 @@
 <script>
 import { defineComponent } from 'vue';
-import DashboardPage from './pages/Dashboard.vue';
 
 export default defineComponent({
-  components: {
-    DashboardPage,
-  },
+
 });
 </script>
 
@@ -16,9 +13,7 @@ export default defineComponent({
     </nav>
   </aside>
 
-  <main
-    class="flex flex-1 bg-red-100"
-  >
-    <DashboardPage />
+  <main>
+    <slot />
   </main>
 </template>
