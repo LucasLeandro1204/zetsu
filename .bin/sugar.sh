@@ -9,8 +9,14 @@ shift
 IFS=', '
 read -r -a PARSED <<< "$PACKAGES"
 
-if [[ -z "$PACKAGES" ]] || [[ ${#PARSED[@]} -gt 1 ]]; then
-  eval "npx lerna run $COMMAND --scope=@zetsu/*{$PACKAGES} --parallel $@"
+if [[ -z "$PACKAGES" ]]; then
+  echo "You should pass a package or a list of packages."
+
+  exit
+fi
+
+if [[ ${#PARSED[@]} -gt 1 ]]; then
+  eval "yarn lerna run $COMMAND --scope=@zetsu/*{$PACKAGES} --parallel $@"
 else
-  eval "npx lerna run $COMMAND --scope=@zetsu/$PACKAGES --parallel $@"
+  eval "yarn lerna run $COMMAND --scope=@zetsu/$PACKAGES --parallel $@"
 fi

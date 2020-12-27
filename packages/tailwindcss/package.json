@@ -1,0 +1,11 @@
+{
+  "name": "@zetsu/tailwindcss",
+  "version": "0.0.1",
+  "main": "src/index.js",
+  "dependencies": {
+    "@tailwindcss/postcss7-compat": "^2.0.2",
+    "autoprefixer": "^9",
+    "postcss": "^7",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
+  }
+}
