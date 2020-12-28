@@ -1,24 +1,38 @@
 <script>
 import { defineComponent } from 'vue';
-import DashboardPage from './pages/Dashboard.vue';
+import Text from './components/Text.vue';
+import Header from './components/Header.vue';
 
 export default defineComponent({
   components: {
-    DashboardPage,
+    Text,
+    Header,
   },
 });
 </script>
 
 <template>
-  <aside>
-    <nav>
-      Sidebar
-    </nav>
-  </aside>
-
-  <main
-    class="flex flex-1 bg-red-100"
+  <div
+    class="flex w-full max-w-full"
   >
-    <DashboardPage />
-  </main>
+    <aside class="flex flex-shrink-0 w-32">
+      <nav>
+        Sidebar
+      </nav>
+    </aside>
+
+    <main
+      class="flex flex-col bg-white w-full max-w-min"
+    >
+      <Header
+        tag="h1"
+      >
+        <template
+          #default
+        >
+          Dashboard
+        </template>
+      </Header>
+    </main>
+  </div>
 </template>

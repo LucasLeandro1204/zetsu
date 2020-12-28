@@ -5,7 +5,6 @@ dist-ssr
 
 # ide stuff
 .idea
-.vscode
 
 # other stuff
 .env

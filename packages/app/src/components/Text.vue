@@ -7,6 +7,5 @@ export default defineComponent({
 </script>
 
 <template>
-  <p>ada</p>
-  <p>Dashboard</p>
+  <h1><slot /></h1>
 </template>

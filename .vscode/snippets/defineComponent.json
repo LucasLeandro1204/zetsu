@@ -1,0 +1,11 @@
+{
+  "Vue Define Component": {
+    "prefix": ["defineComponent"],
+    "body": [
+      "<script>",
+      "import { defineComponent } from 'vue';\n",
+      "export default defineComponent({\t$0\n});"
+    ],
+    "description": "Setup vue 3 tag script with defineComponent import"
+  }
+}
