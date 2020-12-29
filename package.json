@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "sh .bin/run.sh dev",
     "build": "sh .bin/run.sh build",
-    "app": "sh .bin/play.sh app"
+    "play": "sh .bin/play.sh"
   },
   "workspaces": {
     "packages": [

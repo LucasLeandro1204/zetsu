@@ -1,5 +1,1 @@
-const {
-  postcss,
-} = require('@zetsu/tailwindcss');
-
-module.exports = postcss;
+module.exports = require('@zetsu/tailwindcss/postcss');

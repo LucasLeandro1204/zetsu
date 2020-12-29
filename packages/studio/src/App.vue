@@ -11,6 +11,5 @@ export default defineComponent({
   <div
     class="flex w-full max-w-full"
   >
-a
   </div>
 </template>

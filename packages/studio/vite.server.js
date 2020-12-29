@@ -1,5 +1,5 @@
 const { createServer } = require('vite');
-const { middleware } = require('@zetsu/tailwindcss');
+const { middleware } = require('@zetsu/tailwindcss/src/server');
 
 createServer({
   configureServer: [
