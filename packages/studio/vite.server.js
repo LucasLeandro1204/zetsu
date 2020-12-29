@@ -7,4 +7,4 @@ createServer({
   ],
 }).listen(3000);
 
-console.log('zetsu/app - Vite dev server running at http://localhost:3000');
+console.log('[studio] - Vite dev server running at http://localhost:3000');

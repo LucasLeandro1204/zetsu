@@ -1,4 +1,3 @@
-import './index.css';
 import '@zetsu/tailwindcss/tailwind.css';
 
 import App from './App.vue';
