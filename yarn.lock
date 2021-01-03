@@ -1374,6 +1374,21 @@
   resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.0.4.tgz#6dc50f593bdfdeaa6183d1dbc15e2d45e7c6b8b3"
   integrity sha512-Swfbz31AaMX48CpFl+YmIrqOH9MgJMTrltG9e26A4ZxYx9LjGuMV+41WnxFzS3Bc9nbrc6sDPM37G6nIT8NJSg==
 
+"@vueuse/core@^4.0.2":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@vueuse/core/-/core-4.0.2.tgz#286b2115fccec197194df9da5fda23cc2e5e0eae"
+  integrity sha512-ZN0g/gfiQRLfzl1VBRU6EuNvk/AR5Q1gnnxNCoYK66NN2ufID9NTK0RCiWia/e04whS6Z+l8ESw8Ec4FIGJ7WQ==
+  dependencies:
+    "@vueuse/shared" "4.0.2"
+    vue-demi latest
+
+"@vueuse/shared@4.0.2":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@vueuse/shared/-/shared-4.0.2.tgz#35b286a19d73a350eff5d3e5e9c6ce8bad108050"
+  integrity sha512-SxfyeFDjOk3ymtZgNZdTbUO9hCV1jQFzi+PI0b12zvkO+7hc2LdXInlZI7U42RBwKzHd1LVos1e1VQf+BPZbOA==
+  dependencies:
+    vue-demi latest
+
 "@zkochan/cmd-shim@^3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@zkochan/cmd-shim/-/cmd-shim-3.1.0.tgz#2ab8ed81f5bb5452a85f25758eb9b8681982fd2e"
@@ -7841,6 +7856,11 @@ vite@^1.0.0-rc.13:
     source-map "^0.7.3"
     vue "^3.0.3"
     ws "^7.3.1"
+
+vue-demi@latest:
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.5.3.tgz#ec0f10b2c56d5958f31363afaa2ef8b8b9c4e6ec"
+  integrity sha512-1uW/aIJOEkRbyK3FBeReKbbMAZc/V5yUo4FQRprufm4GgMnAmJSSyk8mTJ9IgR4pbbCsQ7FddVHcuwz4IDEfGg==
 
 vue-router@4:
   version "4.0.2"
