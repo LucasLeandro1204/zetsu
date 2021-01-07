@@ -82,9 +82,8 @@ export const useMouse = ({
       const {
         clientX: pageX,
         clientY: pageY,
-        ...rest
       } = event.touches[0];
-console.log('rest', rest);
+
       mouseHandler({ pageX, pageY, target: event.target });
     }
   };
