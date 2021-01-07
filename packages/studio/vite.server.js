@@ -1,10 +1,3 @@
-const { createServer } = require('vite');
-const { middleware } = require('@zetsu/tailwindcss/src/server');
+const { createServer } = require('@zetsu/dev-vite');
 
-createServer({
-  configureServer: [
-    middleware,
-  ],
-}).listen(3000);
-
-console.log('[studio] - Vite dev server running at http://localhost:3000');
+createServer('studio', 3001);

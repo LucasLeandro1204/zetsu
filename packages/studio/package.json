@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "@vue/compiler-sfc": "^3.0.4",
-    "@zetsu/tailwindcss": "0.0.1",
-    "vite": "^1.0.0-rc.13"
+    "@zetsu/dev-vite": "0.0.1",
+    "@zetsu/tailwindcss": "0.0.1"
   }
 }
