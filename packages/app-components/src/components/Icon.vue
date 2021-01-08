@@ -1,7 +1,7 @@
 <script>
 export default {
   props: {
-    name: String,
+    icon: String,
 
     size: {
       type: [String, Number],

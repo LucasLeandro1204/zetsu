@@ -6,6 +6,7 @@
     "build": "vite build"
   },
   "dependencies": {
+    "@mdi/js": "^5.8.55",
     "@vueuse/core": "^4.0.4",
     "vue": "^3.0.5",
     "vue-router": "4"
