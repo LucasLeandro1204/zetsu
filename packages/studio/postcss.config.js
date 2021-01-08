@@ -1,1 +1,1 @@
-module.exports = require('@zetsu/tailwindcss/postcss');
+export { default } from '@zetsu/tailwindcss/postcss.config';

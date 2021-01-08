@@ -1,14 +1,14 @@
-const { join } = require('path');
+import { join, resolve} from 'path';
 
 /**
  * Tailwind config path.
  */
-const TAILWIND_CONFIG_PATH = join(__dirname, './tailwind.config.js');
+export const TAILWIND_CONFIG_PATH = join(resolve(), './tailwind.config.js');
 
 /**
  * Vite middleware.
  */
-const middleware = ({
+export const middleware = ({
   watcher,
 }) => {
   console.info('[tailwindcss] watch Tailwind config file');
@@ -16,9 +16,4 @@ const middleware = ({
   watcher.add(
     TAILWIND_CONFIG_PATH
   );
-};
-
-module.exports = {
-  middleware,
-  TAILWIND_CONFIG_PATH,
 };

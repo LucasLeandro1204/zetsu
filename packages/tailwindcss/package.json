@@ -2,11 +2,17 @@
   "name": "@zetsu/tailwindcss",
   "version": "0.0.1",
   "main": "src/index.js",
+  "type": "module",
+  "exports": {
+    "./": "./src/index.js",
+    "./server": "./src/server.js",
+    "./postcss": "./src/postcss.config.js"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.1",
     "@tailwindcss/postcss7-compat": "^2.0.2",
-    "autoprefixer": "^9",
-    "postcss": "^7",
+    "autoprefixer": "^10",
+    "postcss": "^8",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat"
   }
 }

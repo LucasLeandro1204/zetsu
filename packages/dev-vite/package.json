@@ -1,7 +1,8 @@
 {
   "name": "@zetsu/dev-vite",
   "version": "0.0.1",
-  "main": "src/index.js",
+  "type": "module",
+  "exports": "./src/index.js",
   "devDependencies": {
     "vite": "^1.0.0-rc.13"
   }
