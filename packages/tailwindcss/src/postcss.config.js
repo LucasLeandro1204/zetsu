@@ -1,6 +1,6 @@
-import { TAILWIND_CONFIG_PATH } from './server.js';
+const { TAILWIND_CONFIG_PATH } = require('./server.js');
 
-export const config = {
+const config = {
   plugins: {
     autoprefixer: {},
     tailwindcss: {
@@ -8,3 +8,5 @@ export const config = {
     },
   },
 };
+
+module.exports = config;

@@ -1,3 +1,3 @@
-import { createServer } from '@zetsu/dev-vite';
+const { createServer } = require('@zetsu/dev-vite');
 
 createServer('app', 3000);

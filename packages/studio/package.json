@@ -7,11 +7,11 @@
   },
   "dependencies": {
     "@vueuse/core": "^4.0.2",
-    "vue": "^3.0.4",
+    "vue": "^3.0.5",
     "vue-router": "4"
   },
   "devDependencies": {
-    "@vue/compiler-sfc": "^3.0.4",
+    "@vue/compiler-sfc": "^3.0.5",
     "@zetsu/dev-vite": "0.0.1",
     "@zetsu/tailwindcss": "0.0.1"
   }

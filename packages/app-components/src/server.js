@@ -1,14 +1,14 @@
-import { resolve } from 'path';
+const { join } = require('path');
 
 /**
  * App components path.
  */
-export const COMPONENTS_PATH = resolve();
+const COMPONENTS_PATH = join(__dirname);
 
 /**
  * Vite middleware.
  */
-export const middleware = ({
+const middleware = ({
   watcher,
 }) => {
   console.info('[app-components] watch components files');
@@ -16,4 +16,9 @@ export const middleware = ({
   watcher.add(
     COMPONENTS_PATH
   );
+};
+
+module.exports = {
+  middleware,
+  COMPONENTS_PATH,
 };

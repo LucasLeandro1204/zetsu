@@ -1,11 +1,6 @@
 {
   "name": "@zetsu/app-components",
-  "type": "module",
   "version": "0.0.1",
-  "exports": {
-    "./": "./src/index.js",
-    "./server": "./src/server.js"
-  },
   "main": "./src/index.js",
   "scripts": {
     "dev": "node vite.server.js",
@@ -13,11 +8,11 @@
   },
   "dependencies": {
     "@vueuse/core": "^4.0.2",
-    "vue": "^3.0.4",
+    "vue": "^3.0.5",
     "vue-router": "4"
   },
   "devDependencies": {
-    "@vue/compiler-sfc": "^3.0.4",
+    "@vue/compiler-sfc": "^3.0.5",
     "@zetsu/dev-vite": "0.0.1",
     "@zetsu/tailwindcss": "0.0.1"
   }

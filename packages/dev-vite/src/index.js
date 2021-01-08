@@ -1,8 +1,8 @@
-import { createServer as viteCreateServer } from 'vite';
-import { middleware as tailwindMiddleware } from '@zetsu/tailwindcss/server';
-import { middleware as componentsMiddleware } from '@zetsu/app-components/server';
+const { createServer: viteCreateServer } = require('vite');
+const { middleware: tailwindMiddleware } = require('@zetsu/tailwindcss/src/server');
+const { middleware: componentsMiddleware } = require ('@zetsu/app-components/src/server');
 
-export const createServer = (pkg, port) => {
+const createServer = (pkg, port) => {
   const server = viteCreateServer({
     configureServer: [
       tailwindMiddleware,
@@ -15,4 +15,8 @@ export const createServer = (pkg, port) => {
   console.log(`[${pkg}] - Vite dev server running at http://localhost:${port}`);
 
   return server;
+};
+
+module.exports = {
+  createServer,
 };
