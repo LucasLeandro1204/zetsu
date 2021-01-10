@@ -1,6 +1,9 @@
 import '@zetsu/tailwindcss';
-
 import App from './App.vue';
+import router from './router';
 import { createApp } from 'vue';
 
-createApp(App).mount('#zetsu-app');
+const app = createApp(App)
+
+app.use(router);
+app.mount('#zetsu-app');
