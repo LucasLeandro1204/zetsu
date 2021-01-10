@@ -20,16 +20,16 @@ export default defineComponent({
 
 <template>
   <aside
-    class="border-r"
+    class="border-r w-44"
   >
     <span
-      class="text-3xl h-14 flex items-center justify-center border-b block text-blue-500 font-bold"
+      class="text-3xl leading-none h-14 flex items-center justify-center border-b block text-blue-500 font-bold"
     >
       Zetsu
     </span>
 
     <nav
-      class="p-4"
+      class="p-4 text-sm"
     >
       <ol
         class=""
@@ -37,7 +37,7 @@ export default defineComponent({
         <li>
           <RouterLink
             to="/dashboard"
-            class="flex items-center"
+            class="flex items-center py-2"
           >
             <Icon
               :icon="mdiHome"
@@ -50,22 +50,22 @@ export default defineComponent({
 
         <li>
           <RouterLink
-            to="/themes"
-            class="flex items-center"
+            to="/leads"
+            class="flex items-center py-2"
           >
             <Icon
               :icon="mdiHome"
               class="w-4 mr-2"
             />
 
-            Themes
+            Leads
           </RouterLink>
         </li>
 
         <li>
           <RouterLink
             to="/trails"
-            class="flex items-center"
+            class="flex items-center py-2"
           >
             <Icon
               :icon="mdiHome"
@@ -78,8 +78,22 @@ export default defineComponent({
 
         <li>
           <RouterLink
+            to="/themes"
+            class="flex items-center py-2"
+          >
+            <Icon
+              :icon="mdiHome"
+              class="w-4 mr-2"
+            />
+
+            Themes
+          </RouterLink>
+        </li>
+
+        <li>
+          <RouterLink
             to="/settings"
-            class="flex items-center"
+            class="flex items-center py-2"
           >
             <Icon
               :icon="mdiHome"
@@ -99,7 +113,7 @@ export default defineComponent({
         <li>
           <RouterLink
             to="/me"
-            class="flex items-center"
+            class="flex items-center py-2"
           >
             <Icon
               :icon="mdiHome"
@@ -113,7 +127,7 @@ export default defineComponent({
         <li>
           <RouterLink
             to="/logout"
-            class="flex items-center"
+            class="flex items-center py-2"
           >
             <Icon
               :icon="mdiHome"
@@ -131,7 +145,7 @@ export default defineComponent({
     class="flex flex-col flex-1"
   >
     <header
-      class="h-14 w-full flex items-end px-4 py-2 border-b"
+      class="h-14 w-full flex items-end px-4 py-3 border-b"
     >
       <slot
         name="header"
