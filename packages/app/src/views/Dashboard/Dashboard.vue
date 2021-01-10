@@ -1,13 +1,32 @@
-<template>
-  <header
-    class="h-14 w-full flex text-lg items-end px-4 py-2 border-b"
-  >
-    <h1>Dashboard</h1>
-  </header>
+<script>
+import Main from '../Main.vue';
+import { defineComponent } from 'vue';
 
-  <main
-    class="p-4"
+export default defineComponent({
+  components: {
+    Main,
+  },
+});
+</script>
+
+<template>
+  <Main
+    class="flex-col"
   >
-    Begin
-  </main>
+    <template
+      #header
+    >
+      <h1
+        class="text-xl font-semibold"
+      >
+        Dashboard
+      </h1>
+    </template>
+
+    <article
+      class="p-4"
+    >
+      <h2>Visão geral</h2>
+    </article>
+  </Main>
 </template>

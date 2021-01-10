@@ -1,15 +1,18 @@
 <script>
+import Main from './Main.vue';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  //
+  components: {
+    Main,
+  },
 });
 </script>
 
 <template>
-  <div
-    class="flex min-h-screen"
+  <Main
+    class="p-4"
   >
-    <RouterView />
-  </div>
+    Not found
+  </Main>
 </template>

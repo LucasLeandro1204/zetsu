@@ -1,3 +1,4 @@
+import NotFound from './views/NotFound.vue';
 import Dashboard from './views/Dashboard/Dashboard.vue';
 import { createRouter, createWebHistory } from 'vue-router';
 
@@ -13,7 +14,7 @@ export default createRouter({
 
     {
       path: '/:pathMatch(.*)',
-      redirect: '/dashboard',
+      component: NotFound,
     },
   ],
 });
