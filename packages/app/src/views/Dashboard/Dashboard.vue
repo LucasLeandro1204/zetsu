@@ -37,13 +37,19 @@ export default defineComponent({
       <section
         class="mr-4"
       >
-        Leads:  200
+        Active Users:  200
       </section>
 
       <section
         class="mr-4"
       >
-        Flows: 200
+        Total of Trails runs: 200
+      </section>
+
+      <section
+        class="mr-4"
+      >
+        Finished Trails: 80
       </section>
     </article>
   </Main>

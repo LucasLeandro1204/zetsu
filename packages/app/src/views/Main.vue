@@ -50,7 +50,7 @@ export default defineComponent({
 
         <li>
           <RouterLink
-            to="/leads"
+            to="/users"
             class="flex items-center py-2"
           >
             <Icon
@@ -58,7 +58,7 @@ export default defineComponent({
               class="w-4 mr-2"
             />
 
-            Leads
+            Users
           </RouterLink>
         </li>
 
