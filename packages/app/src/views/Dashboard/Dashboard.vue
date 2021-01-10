@@ -23,7 +23,7 @@ export default defineComponent({
       </h1>
 
       <select
-        class="ml-8 text-sm"
+        class="ml-auto bg-gray-100 h-full rounded px-4 text-sm"
       >
         <option>Last 2 weeks</option>
       </select>
