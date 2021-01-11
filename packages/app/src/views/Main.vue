@@ -35,10 +35,11 @@ export default defineComponent({
         class=""
       >
         <select
-          class="w-full bg-gray-100"
+          class="w-full bg-gray-100 px-3 py-2"
         >
           <option>Zetsu</option>
         </select>
+
         <li>
           <RouterLink
             to="/dashboard"
@@ -150,7 +151,7 @@ export default defineComponent({
     class="flex flex-col flex-1"
   >
     <header
-      class="h-14 w-full flex items-end px-4 py-3 border-b"
+      class="h-14 w-full flex-shrink-0 flex items-end px-4 py-3 border-b"
     >
       <slot
         name="header"
@@ -158,7 +159,7 @@ export default defineComponent({
     </header>
 
     <main
-      class="flex"
+      class="flex h-full"
       v-bind="$attrs"
     >
       <slot />
