@@ -117,7 +117,7 @@ export default defineComponent({
 
         <li>
           <RouterLink
-            to="/me"
+            to="/profile"
             class="flex items-center py-2"
           >
             <Icon

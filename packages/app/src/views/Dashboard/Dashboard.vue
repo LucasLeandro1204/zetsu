@@ -30,26 +30,28 @@ export default defineComponent({
     </template>
 
     <article
-      class="p-4 flex flex-wrap"
+      class="p-4"
     >
-      <h2 class="font-semibold mb-2 w-full">Overview</h2>
-
       <section
-        class="mr-4"
+        class="flex flex-col"
       >
-        Active Users:  200
-      </section>
+        <h2 class="font-semibold mb-2 w-full">Overview</h2>
 
-      <section
-        class="mr-4"
-      >
-        Total of Trails runs: 200
-      </section>
+        <ul
+          class="flex space-x-4"
+        >
+          <li>
+            Active Users:  200
+          </li>
 
-      <section
-        class="mr-4"
-      >
-        Finished Trails: 80
+          <li>
+            Total of Trails runs: 200
+          </li>
+
+          <li>
+            Finished Trails: 80
+          </li>
+        </ul>
       </section>
     </article>
   </Main>
