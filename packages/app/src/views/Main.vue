@@ -34,6 +34,11 @@ export default defineComponent({
       <ol
         class=""
       >
+        <select
+          class="w-full bg-gray-100"
+        >
+          <option>Zetsu</option>
+        </select>
         <li>
           <RouterLink
             to="/dashboard"
