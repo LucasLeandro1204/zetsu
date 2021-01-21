@@ -1,8 +1,37 @@
 <script>
 import Main from '../Main.vue';
-import { reactive, defineComponent } from 'vue';
+import { reactive, defineComponent, provide as _provide } from 'vue';
+import { FormField } from '@zetsu/app-components';
+import { extendRef } from '@vueuse/core';
 
-export const user = reactive({
+const useForm = (key, data) => {
+  const form = reactive({
+    ...data,
+  });
+
+  const merge = (form) => {
+    for (const [field, value] of Object.entries(form)) {
+      form[field] = value;
+    }
+  };
+
+  const reset = () => {
+    merge(data);
+  };
+
+  const provide = () => {
+    _provide(key, form);
+  };
+
+  return {
+    ...toRefs(form),
+
+    merge,
+    reset,
+  };
+};
+
+export const user = useForm({
   id: 0,
   tenantId: 0,
 
@@ -16,12 +45,22 @@ export const user = reactive({
   updatedAt: new Date(),
 });
 
+export const security = useForm({
+  password: '',
+  currentPassword: '',
+  passwordConfirmation: '',
+});
+
 export default defineComponent({
   components: {
     Main,
+    FormField,
   },
 
   setup () {
+    user.provide();
+    security.provide();
+
     return {
       user,
     };
@@ -52,12 +91,8 @@ export default defineComponent({
         <form
           class="flex flex-col space-y-4"
         >
-          <input
-            type="text"
-            name="firstName"
-            v-model="user.firstName"
-            placeholder="First name"
-            class="bg-gray-100 px-3 py-2"
+          <FormField
+            name="user.firstName"
           />
           <input
             type="text"

@@ -1,5 +1,5 @@
 import NotFound from './views/NotFound.vue';
-import Profile from './views/Profile/Profile.vue';
+import User from './views/User/User.vue';
 import Dashboard from './views/Dashboard/Dashboard.vue';
 import { createRouter, createWebHistory } from 'vue-router';
 
@@ -14,9 +14,9 @@ export default createRouter({
     },
 
     {
-      path: '/profile',
-      name: 'profile',
-      component: Profile,
+      path: '/user',
+      name: 'user',
+      component: User,
     },
 
     {
