@@ -1,10 +1,30 @@
 <script>
 import Main from '../Main.vue';
-import { defineComponent } from 'vue';
+import { reactive, defineComponent } from 'vue';
+
+export const user = reactive({
+  id: 0,
+  tenantId: 0,
+
+  lastName: 'Doe',
+  firstName: 'John',
+  email: 'john@doe.com',
+  phone: '48 9 9687 9956',
+  company: 'John Doe LTDA',
+
+  createdAt: new Date(),
+  updatedAt: new Date(),
+});
 
 export default defineComponent({
   components: {
     Main,
+  },
+
+  setup () {
+    return {
+      user,
+    };
   },
 });
 </script>
@@ -35,6 +55,7 @@ export default defineComponent({
           <input
             type="text"
             name="firstName"
+            v-model="user.firstName"
             placeholder="First name"
             class="bg-gray-100 px-3 py-2"
           />
@@ -42,11 +63,13 @@ export default defineComponent({
             type="text"
             name="lastName"
             placeholder="Last name"
+            v-model="user.lastName"
             class="bg-gray-100 px-3 py-2"
           />
           <input
             type="text"
             name="phone"
+            v-model="user.phone"
             placeholder="Phone"
             class="bg-gray-100 px-3 py-2"
           />
@@ -54,11 +77,13 @@ export default defineComponent({
             type="text"
             name="company"
             placeholder="Company"
+            v-model="user.company"
             class="bg-gray-100 px-3 py-2"
           />
           <input
             type="email"
             name="email"
+            v-model="user.email"
             placeholder="E-mail"
             class="bg-gray-100 px-3 py-2"
           />
@@ -79,12 +104,14 @@ export default defineComponent({
             placeholder="Current password"
             class="bg-gray-100 px-3 py-2"
           />
+
           <input
             type="text"
             name="password"
             placeholder="New password"
             class="bg-gray-100 px-3 py-2"
           />
+
           <input
             type="text"
             name="passwordConfirmation"
