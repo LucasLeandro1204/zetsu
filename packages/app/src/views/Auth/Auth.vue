@@ -1,10 +1,16 @@
 <script>
-import { computed, defineComponent } from 'vue';
+import { computed, defineComponent, reactive, shallowReactive } from 'vue';
 import { user } from '../User/User.vue';
 
-export const authenticated = computed(() => {
-
+export const auth = shallowReactive({
+  checked: true,
+  authenticated: true,
+  token: 'somerandomtoken',
 });
+
+export const Authenticate = () => {
+
+};
 
 export default defineComponent({
 
