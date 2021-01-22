@@ -1,42 +1,25 @@
 <script>
 import Main from '../Main.vue';
-import { reactive, defineComponent, provide as _provide } from 'vue';
+import { reactive, defineComponent, provide as _provide, toRefs } from 'vue';
 import { FormField } from '@zetsu/app-components';
-import { extendRef } from '@vueuse/core';
+import { useVuelidate } from '@vuelidate/core'
+import UserPersonal from './UserPersonal.vue';
+import { email, required } from '@vuelidate/validators'
 
 const useForm = (key, data) => {
-  const form = reactive({
-    ...data,
-  });
-
-  const merge = (form) => {
-    for (const [field, value] of Object.entries(form)) {
-      form[field] = value;
-    }
-  };
-
-  const reset = () => {
-    merge(data);
-  };
-
-  const provide = () => {
-    _provide(key, form);
-  };
-
-  return {
-    ...toRefs(form),
-
-    merge,
-    reset,
-  };
+  // provide(key);
 };
 
-export const user = useForm({
+/**
+ * User client model.
+ */
+export const user = reactive({
   id: 0,
   tenantId: 0,
 
   lastName: 'Doe',
   firstName: 'John',
+
   email: 'john@doe.com',
   phone: '48 9 9687 9956',
   company: 'John Doe LTDA',
@@ -45,24 +28,50 @@ export const user = useForm({
   updatedAt: new Date(),
 });
 
-export const security = useForm({
-  password: '',
-  currentPassword: '',
-  passwordConfirmation: '',
-});
+export const useUser = () => {
+  const refs = toRefs(user);
+
+  const personal = useVuelidate({
+    lastName: {
+      required,
+    },
+
+    firstName: {
+      required,
+    },
+
+    email: {
+      email,
+    },
+  }, refs);
+
+  const security = useVuelidate({
+
+  }, refs);
+
+  const state = reactive({
+    ...refs,
+    personal,
+    security,
+  });
+
+  return state;
+};
 
 export default defineComponent({
   components: {
     Main,
     FormField,
+    UserPersonal,
   },
 
   setup () {
-    user.provide();
-    security.provide();
+    const state = useUser();
+
+    console.dir(state);
 
     return {
-      user,
+      state,
     };
   },
 });
@@ -88,41 +97,7 @@ export default defineComponent({
       >
         <h2 class="mb-4">Personal info</h2>
 
-        <form
-          class="flex flex-col space-y-4"
-        >
-          <FormField
-            name="user.firstName"
-          />
-          <input
-            type="text"
-            name="lastName"
-            placeholder="Last name"
-            v-model="user.lastName"
-            class="bg-gray-100 px-3 py-2"
-          />
-          <input
-            type="text"
-            name="phone"
-            v-model="user.phone"
-            placeholder="Phone"
-            class="bg-gray-100 px-3 py-2"
-          />
-          <input
-            type="text"
-            name="company"
-            placeholder="Company"
-            v-model="user.company"
-            class="bg-gray-100 px-3 py-2"
-          />
-          <input
-            type="email"
-            name="email"
-            v-model="user.email"
-            placeholder="E-mail"
-            class="bg-gray-100 px-3 py-2"
-          />
-        </form>
+        <UserPersonal />
       </section>
 
       <section

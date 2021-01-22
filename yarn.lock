@@ -1457,6 +1457,20 @@
   resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.0.5.tgz#c131d88bd6713cc4d93b3bb1372edb1983225ff0"
   integrity sha512-gYsNoGkWejBxNO6SNRjOh/xKeZ0H0V+TFzaPzODfBjkAIb0aQgBuixC1brandC/CDJy1wYPwSoYrXpvul7m6yw==
 
+"@vuelidate/core@^2.0.0-alpha.8":
+  version "2.0.0-alpha.8"
+  resolved "https://registry.yarnpkg.com/@vuelidate/core/-/core-2.0.0-alpha.8.tgz#47dd904cb888c02f6640d381ba07cf975552c35c"
+  integrity sha512-cH1Za78g5LiTLHXEWfvM66LYQP/yeN2DOr3Wjf1Q5jlPsCNdLPxyianBdHOjsNcxNGrRof6/45DDROTS3Z5CrA==
+  dependencies:
+    vue-demi latest
+
+"@vuelidate/validators@^2.0.0-alpha.5":
+  version "2.0.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/@vuelidate/validators/-/validators-2.0.0-alpha.5.tgz#79787240981f9ec6ea3532bee3f974044e4b515d"
+  integrity sha512-0UsqQhZKWwLTjzYIcyPUOldOrzn044r5GDRa7GoXUrLI+K1b7rTSEzv3EfDoOED/SyLKg3bsvSgfmt5aYLd0sQ==
+  dependencies:
+    vue-demi latest
+
 "@vueuse/core@^4.0.2":
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/@vueuse/core/-/core-4.0.2.tgz#286b2115fccec197194df9da5fda23cc2e5e0eae"
