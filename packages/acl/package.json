@@ -1,0 +1,8 @@
+{
+  "name": "@zetsu/acl",
+  "version": "0.0.1",
+  "main": "src/index.js",
+  "dependencies": {
+    "@casl/ability": "^5.2.0"
+  }
+}

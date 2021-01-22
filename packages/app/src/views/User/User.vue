@@ -68,8 +68,6 @@ export default defineComponent({
   setup () {
     const state = useUser();
 
-    console.dir(state);
-
     return {
       state,
     };
@@ -97,7 +95,7 @@ export default defineComponent({
       >
         <h2 class="mb-4">Personal info</h2>
 
-        <UserPersonal />
+        <!-- <UserPersonal /> -->
       </section>
 
       <section
