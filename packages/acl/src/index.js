@@ -1,30 +1,52 @@
 import render from 'lodash.template';
 import { Ability, AbilityBuilder } from '@casl/ability';
 
-// readonly action: Tuple<A>[0] | Tuple<A>[0][];
-// readonly subject: Tuple<A>[1] | Tuple<A>[1][];
-// readonly inverted: boolean;
-// readonly conditions: C | undefined;
-// readonly fields: string[] | undefined;
-// readonly reason: string | undefined;
+/**
+ * User pre-defined roles.
+ */
+export const roles = {
+  /**
+   * Root user can do and see everything.
+   */
+  ROOT: 'root',
+
+  /**
+   * Admin user can do and se everything of the company it belongs to.
+   */
+  ADMIN: 'admin',
+};
 
 /**
- *
+ * Build authenticated user permissions.
  */
 export const auth = ({
-  _id,
-  permissions = [],
+  userId,
+  companyId,
+
+  role,
 }) => {
-  if ()
   const { can, build } = new AbilityBuilder(Ability);
 
-  for (const { action, subject, conditions } of permissions) {
-    can(
-      action,
-      subject,
-      render(conditions, { _id }),
-    );
+  switch (role) {
+    /**
+     * @todo maybe disable it from prod?
+     */
+    case roles.ROOT: {
+      can('manage', 'all');
+    }
+
+    case roles.ADMIN: {
+      can('manage', 'all', { companyId });
+    }
+
+    default: {
+      can('view', 'User', { userId })
+    }
   }
 
-  return build;
+  return build();
+};
+
+export const app = () => {
+
 };
