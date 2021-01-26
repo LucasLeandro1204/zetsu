@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "main": "src/index.js",
   "dependencies": {
-    "@casl/ability": "^5.2.0"
+    "@casl/ability": "^5.2.0",
+    "lru-cache": "^6.0.0"
   }
 }

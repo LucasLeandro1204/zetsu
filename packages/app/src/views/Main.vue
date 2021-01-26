@@ -1,5 +1,5 @@
 <script>
-import { defineComponent } from 'vue';
+import { defineComponent } from 'vue-demi';
 import { Icon } from '@zetsu/app-components';
 import { mdiHome } from '@mdi/js';
 
