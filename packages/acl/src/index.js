@@ -21,28 +21,24 @@ export const roles = {
  */
 export const auth = ({
   userId,
-  companyId,
 
   role,
 }) => {
   const { can, build } = new AbilityBuilder(Ability);
 
-  switch (role) {
-    /**
-     * @todo maybe disable it from prod?
-     */
-    case roles.ROOT: {
-      can('manage', 'all');
-    }
 
-    case roles.ADMIN: {
-      can('manage', 'all', { companyId });
-    }
 
-    default: {
-      can('view', 'User', { userId })
-    }
-  }
+  // switch (role) {
+  //   case roles.ADMIN: {
+  //     can('manage', 'all');
+  //   }
+
+  //   default: {
+
+  //   }
+  // }
+
+  can('store', 'User', {  });
 
   return build();
 };
