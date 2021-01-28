@@ -1,46 +1,25 @@
-import { subject } from '@casl/ability';
-
-export const user = {
-  view: {
-    fields: [
-      '_id', 'email', 'name',
-    ],
-  },
-
-  update: {
-
-  },
-};
-
-/**
- * User permissions.
- */
-export const user = [
-  {
-    action: 'view',
-    fields: [
-      ''
-    ],
-  },
-];
-
 import render from 'lodash.template';
+import { subject } from '@casl/ability';
 import { Ability, AbilityBuilder } from '@casl/ability';
 
-/**
- * User pre-defined roles.
- */
-export const roles = {
-  /**
-   * Root user can do and see everything.
-   */
-  ROOT: 'root',
+export const permissions = {
+  user: {
+    view: [
+      {
+        value: null,
+        label: 'All',
+      },
+      {
 
-  /**
-   * Admin user can do and se everything of the company it belongs to.
-   */
-  ADMIN: 'admin',
+      },
+    ],
+  },
 };
+
+/**
+ *
+ */
+// export const roles =
 
 /**
  * Build authenticated user permissions.
