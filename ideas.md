@@ -72,3 +72,13 @@ e tem outros que tem acesso somente a um, e provavelmente pra sempre so pra 1
 - audit logs
 - permitir que dados de usuarios sejam anonimizados a pedido
 
+
+quase uma rede social da empresa
+
+permitir ter um "feed" de atualizacoes (e comentar elas)
+
+menu de "membros"
+
+e menu de admin
+
+poder seguir e tal o outro funcionario
