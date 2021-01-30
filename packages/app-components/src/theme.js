@@ -3,6 +3,12 @@ const { deepEqual } = require('assert');
 const theme = {
   button: {
 
+  },
+};
+
+const theme = {
+  button: {
+
     /**
      * Default classes.
      * Can be a string (mapped to root prop) or object (many elements + root)
@@ -15,18 +21,10 @@ const theme = {
      * Can be a string or object (many elements)
      */
     states: {
-      primary: 'bg-green-300 focus:bg-green-200 text-white',
-      secondary: 'bg-blue-300 focus:bg-blue-200 text-white',
-      link: 'bg-transparent text-blue-400 underline active:text-blue-300',
+      primary: 'bg-green-400 focus:bg-green-300 text-white',
+      secondary: 'bg-blue-400 focus:bg-blue-300 text-white',
+      link: 'bg-transparent text-blue-400 p-0 underline active:text-blue-300',
     },
-  },
-
-  /**
-   * Button without padding.
-   */
-  buttonFlat: {
-    extends: 'button',
-    classes: 'p-0',
   },
 
   /**
@@ -35,18 +33,10 @@ const theme = {
   buttonIcon: {
     extends: 'button',
 
-    classes: {
-      /**
-       * Overwrite button root classes.
-       * Remove padding.
-       */
-      root: '',
-
-      /**
-       * Icon classes.
-       */
-      icon: '',
-    },
+    /**
+     * Overwrite button root classes.
+     */
+    classes: 'p-2',
   },
 };
 
