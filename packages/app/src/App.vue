@@ -1,5 +1,13 @@
 <script>
-import { defineComponent } from 'vue-demi';
+import { defineComponent, reactive } from 'vue-demi';
+
+const store = reactive({
+  menus: {
+
+  },
+
+  page: {},
+});
 
 export default defineComponent({
   //
