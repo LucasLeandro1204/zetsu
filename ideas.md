@@ -82,3 +82,29 @@ menu de "membros"
 e menu de admin
 
 poder seguir e tal o outro funcionario
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    ". . . ."
+    ". . . ."
+    ". . . .";
+}
+
+
+-----
+
+
+eu quero poder:
+
+- entrar no app
+- adicionar uma nova pagina
+  - posso dar um nome pra pagina
+- poder adicionar um elemento > selecinoar de lista (botao por enquanto)
+- poder selecionar o elemento
+- poder alterar a classe do elemento selecionado
+- adicionar filhos (filtrar quais sao possiveis)
+- clonar o elemento
+- selecionar varios e alterar as classes em comum
