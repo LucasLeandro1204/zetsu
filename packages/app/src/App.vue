@@ -189,9 +189,29 @@ provide('app', {
 
 <template functional>
 <div
-  class="w-full h-full h-screen flex flex-col"
+  class="w-full h-full h-screen flex"
 >
-  <AppHeader />
+  <aside
+    class="w-9 h-full text-white bg-gradient-to-bl from-darkest to-darker border-r border-dark"
+  >
+    <h2
+      class="transform rotate-90"
+    >
+      <a
+        href="#"
+        class="whitespace-nowrap px-4 text-xl h-9"
+      >
+        ZETSU
+      </a>
+    </h2>
+  </aside>
+
+  <div
+    class="flex-1 flex flex-col h-full"
+  >
+  <AppHeader
+    class="h-9 w-full"
+  />
 
   <!-- <div
     class="px-4 top-8 text-white absolute"
@@ -222,7 +242,7 @@ provide('app', {
     </ul>
   </div> -->
 
-  <div
+  <main
     @mousewheel="handleMousewheel"
     @click="handleEditingReset"
     ref="root"
@@ -247,6 +267,7 @@ provide('app', {
         </component>
       </div>
     </div>
+  </main>
   </div>
 </div>
 </template>
