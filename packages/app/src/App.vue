@@ -1,6 +1,7 @@
 <script setup>
 import { reactify, TransitionPresets, useMouse, useTransition, useWindowSize } from '@vueuse/core';
 import AppHeader from './components/AppHeader.vue';
+import AppAside from './components/AppAside.vue';
 import { computed, inject, provide, reactive, ref, unref, watch } from 'vue';
 import Grid from './Grid.vue';
 
@@ -191,27 +192,16 @@ provide('app', {
 <div
   class="w-full h-full h-screen flex"
 >
-  <aside
-    class="w-9 h-full text-white bg-gradient-to-bl from-darkest to-darker border-r border-dark"
-  >
-    <h2
-      class="transform rotate-90"
-    >
-      <a
-        href="#"
-        class="whitespace-nowrap px-4 text-xl h-9"
-      >
-        ZETSU
-      </a>
-    </h2>
-  </aside>
+  <AppAside
+    class="w-9 h-full"
+  />
 
   <div
     class="flex-1 flex flex-col h-full"
   >
-  <AppHeader
-    class="h-9 w-full"
-  />
+    <AppHeader
+      class="h-9 w-full"
+    />
 
   <!-- <div
     class="px-4 top-8 text-white absolute"
@@ -242,32 +232,32 @@ provide('app', {
     </ul>
   </div> -->
 
-  <main
-    @mousewheel="handleMousewheel"
-    @click="handleEditingReset"
-    ref="root"
-    class="w-full h-full overflow-hidden bg-gradient-to-tr from-darkest to-darker p-8"
-  >
-    <div
-      class="relative h-0 flex w-max ring-offset-2 ring-white ring-offset-gray-900"
-      :key="item.key"
-      :style="item.style"
-      :class="{ 'ring-1 ring-opacity-100': editing.has(item.key) }"
-      v-show="item.visible"
-      v-for="item in list"
-      @click.stop.prevent="handleItemClick($event, item)"
+    <main
+      @mousewheel="handleMousewheel"
+      @click="handleEditingReset"
+      ref="root"
+      class="w-full h-full overflow-hidden bg-gradient-to-tr from-darkest to-darker p-8"
     >
       <div
+        class="relative h-0 flex w-max ring-offset-2 ring-white ring-offset-gray-900"
+        :key="item.key"
+        :style="item.style"
+        :class="{ 'ring-1 ring-opacity-100': editing.has(item.key) }"
+        v-show="item.visible"
+        v-for="item in list"
+        @click.stop.prevent="handleItemClick($event, item)"
       >
-        <component
-          :is="item.tag"
-          :class="item.classes"
+        <div
         >
-          {{ item.content }}
-        </component>
+          <component
+            :is="item.tag"
+            :class="item.classes"
+          >
+            {{ item.content }}
+          </component>
+        </div>
       </div>
-    </div>
-  </main>
+    </main>
   </div>
 </div>
 </template>
