@@ -1,6 +1,7 @@
 <script setup>
 import { reactify, TransitionPresets, useMouse, useTransition } from '@vueuse/core';
-import { computed, reactive, ref, unref, watch } from 'vue';
+import AppHeader from './components/AppHeader.vue';
+import { computed, inject, provide, reactive, ref, unref, watch } from 'vue';
 import Grid from './Grid.vue';
 
 const useMousePos = () => {
@@ -32,7 +33,7 @@ const useMousePos = () => {
 const {
   pos,
   handleMousewheel,
-} = useMousePos()
+} = useMousePos();
 
 const useListItem = ({ classes, ...item }) => {
   const classList = reactive(new Set(classes.split(' ')));
@@ -177,25 +178,18 @@ const handleAddClass = (event) => {
 
   editingClasses.add(token);
 };
+
+provide('app', {
+  pos,
+  editing,
+});
 </script>
 
 <template functional>
 <div
   class="w-full h-full h-screen flex flex-col"
 >
-  <header
-    class="text-white bg-gradient-to-tr h-9 from-darkest to-darker w-full flex divide-x border-b border-dark divide-x divide-dark"
-  >
-    <span class="px-4 font-mono text-xs h-full items-center flex w-48">X: {{ pos.x }} Y: {{ pos.y }}</span>
-
-    <div class="px-4">
-      <span
-        v-if="editing.size > 0"
-      >
-        Editing: {{ editing.size }}
-      </span>
-    </div>
-  </header>
+  <AppHeader />
 
   <!-- <div
     class="px-4 top-8 text-white absolute"
