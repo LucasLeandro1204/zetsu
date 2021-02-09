@@ -1,5 +1,5 @@
 <script setup>
-import { reactify, TransitionPresets, useMouse, useTransition } from '@vueuse/core';
+import { reactify, TransitionPresets, useMouse, useTransition, useWindowSize } from '@vueuse/core';
 import AppHeader from './components/AppHeader.vue';
 import { computed, inject, provide, reactive, ref, unref, watch } from 'vue';
 import Grid from './Grid.vue';
@@ -11,15 +11,15 @@ const useMousePos = () => {
   const mouse = useMouse();
 
   const pos = reactive({
-    screenX: x,
-    screenY: y,
-    x: computed(() => Math.round(unref(x) + unref(mouse.x))),
-    y: computed(() => Math.round(unref(y) + unref(mouse.y))),
+    x,
+    y,
+    mouseX: computed(() => unref(x) + unref(mouse.x)),
+    mouseY: computed(() => unref(y) + unref(mouse.y)),
   });
 
   const handleMousewheel = (event) => requestAnimationFrame(() => {
-    x.value += (event.deltaX * .4);
-    y.value += (event.deltaY * .4);
+    x.value += Math.round((event.deltaX * .4));
+    y.value += Math.round((event.deltaY * .4));
   });
 
   return {
@@ -39,23 +39,10 @@ const root = ref(null);
 
 const observer = ref(null);
 
-watch(root, (root) => {
-  if (! root) {
-    return;
-  }
-  observer.value = new IntersectionObserver((entries) => {
-    entries.forEach(({ isIntersecting, target }) => {
-      target.__visibility.value = isIntersecting;
-    });
-}, {
-  threshold: [1],
-  root,
-  rootMargin: '50%',
-});
-});
+const { width, height } = useWindowSize();
 
 const useListItem = ({ classes, ...item }) => {
-  const visible = computed(() => pos.screenX < item.posX);
+  const visible = computed(() => pos.x < item.posX);
   const classList = reactive(new Set(classes.split(' ')));
 
   return reactive({
@@ -66,7 +53,7 @@ const useListItem = ({ classes, ...item }) => {
     classes: computed(() => Array.from(classList).join(' ')),
 
     style: {
-      transform: computed(() => `translate3D(${unref(item.posX) - pos.screenX}px, ${unref(item.posY) - pos.screenY}px, 0)`),
+      transform: computed(() => `translate3D(${unref(item.posX) - pos.x}px, ${unref(item.posY) - pos.y}px, 0)`),
     },
   });
 };
@@ -252,11 +239,11 @@ provide('app', {
       :key="item.key"
       :style="item.style"
       :class="{ 'ring-1 ring-opacity-100': editing.has(item.key) }"
+      v-show="item.visible"
       v-for="item in list"
       @click.stop.prevent="handleItemClick($event, item)"
     >
       <div
-        v-if="item.visible"
       >
         <component
           :is="item.tag"
