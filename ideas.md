@@ -100,7 +100,7 @@ poder seguir e tal o outro funcionario
 eu quero poder:
 
 - entrar no app
-- adicionar uma nova pagina
+- adicionar uma nova pagina, box ou elemento
   - posso dar um nome pra pagina
 - poder adicionar um elemento > selecinoar de lista (botao por enquanto)
 - poder selecionar o elemento

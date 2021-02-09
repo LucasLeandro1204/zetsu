@@ -12,8 +12,8 @@ const useMousePos = () => {
   const pos = reactive({
     screenX: x,
     screenY: y,
-    x: computed(() => unref(x) + unref(mouse.x)),
-    y: computed(() => unref(y) + unref(mouse.y)),
+    x: computed(() => Math.round(unref(x) + unref(mouse.x))),
+    y: computed(() => Math.round(unref(y) + unref(mouse.y))),
   });
 
   const handleMousewheel = (event) => {
@@ -28,36 +28,6 @@ const useMousePos = () => {
     handleMousewheel,
   };
 };
-
-const editing = reactive(new Map);
-const editingClasses = reactive(new Set);
-
-watch(
-  () => ([...editing.values()]),
-  ([first, ...remain]) => {
-    editingClasses.clear();
-
-    if (! first) {
-      return;
-    }
-
-    for (const key of first.classList.values()) {
-      try {
-        for (const next of remain) {
-          if (! next.classList.has(key)) {
-            throw new Error('Class not set');
-          }
-        }
-
-        editingClasses.add(key);
-      } catch (e) {
-        //
-      }
-    }
-
-    console.log('afaefaf', editingClasses);
-  },
-);
 
 const {
   pos,
@@ -80,29 +50,60 @@ const useListItem = ({ classes, ...item }) => {
   });
 };
 
-const list = [
-  useListItem({
-    posX: 480,
-    posY: 280,
-    key: 'Button default',
+const list = {
+  'Button': useListItem({
+    posX: 300,
+    posY: 80,
+    key: 'Button',
     tag: 'button',
-    classes: 'border border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline',
+    classes: 'border border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline',
     content: 'Placeholder',
   }),
 
-  useListItem({
-    posX: 620,
-    posY: 280,
+  'Button success': useListItem({
+    posX: 480,
+    posY: 80,
     tag: 'button',
     key: 'Button success',
-    classes: 'border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline',
+    classes: 'border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline',
     content: 'Placeholder',
   }),
-];
+};
 
-const handleItemClick = (event, item) => {
-  const { key } = item;
+const editing = reactive(new Set);
+const editingClasses = reactive(new Set);
 
+watch(
+  () => ([...editing]),
+
+  ([first, ...remain]) => {
+    editingClasses.clear();
+
+    if (! first) {
+      return;
+    }
+
+    for (const token of list[first].classList) {
+      try {
+        for (const key of remain) {
+          const next = list[key];
+
+          if (! next.classList.has(token)) {
+            throw new Error('Class not set');
+          }
+        }
+
+        editingClasses.add(token);
+      } catch (e) {
+        //
+      }
+    }
+
+    console.log('afaefaf', editingClasses);
+  },
+);
+
+const handleItemClick = (event, { key }) => {
   if (event.shiftKey) {
     if (editing.has(key)) {
       editing.delete(key);
@@ -110,7 +111,7 @@ const handleItemClick = (event, item) => {
       return;
     }
 
-    editing.set(key, item);
+    editing.add(key);
 
     return;
   }
@@ -120,11 +121,47 @@ const handleItemClick = (event, item) => {
   }
 
   editing.clear();
-  editing.set(key, item);
+  editing.add(key);
 };
 
 const handleEditingReset = () => {
+  if (editing.size === 0) {
+    return;
+  }
+
   editing.clear();
+};
+
+const handleRemoveClass = (token) => {
+  for (const key of editing) {
+    const item = list[key];
+
+    item.classList.delete(token);
+  }
+
+  editingClasses.delete(token);
+};
+
+const handleAddClass = (event) => {
+  const token = event.target.value;
+
+  event.target.value = '';
+
+  for (const key of editing) {
+    const item = list[key];
+
+    if (item.classList.has(token)) {
+      continue;
+    }
+
+    item.classList.add(token);
+  }
+
+  if (editingClasses.has(token)) {
+    return;
+  }
+
+  editingClasses.add(token);
 };
 </script>
 
@@ -139,7 +176,29 @@ const handleEditingReset = () => {
   class="bg-gray-500 px-4 top-8 text-gray-900 absolute"
   v-if="editing.size > 0"
 >
-  Editing {{ editing.size }}
+  <input
+    type="text"
+    class="bg-transparent"
+    placeholder="Add class"
+    @keydown.enter="handleAddClass"
+  />
+
+  <ul>
+    <li
+      v-for="token in editingClasses.values()"
+      :key="token"
+      class="flex items-center justify-between"
+    >
+      {{ token }}
+
+      <button
+        class="ml-4"
+        @click="handleRemoveClass(token)"
+      >
+        X
+      </button>
+    </li>
+  </ul>
 </div>
 
   <div
@@ -148,14 +207,14 @@ const handleEditingReset = () => {
     class="h-screen w-screen bg-gray-800 p-8"
   >
     <div
-      class="absolute"
+      class="absolute ring-offset-2 ring-white ring-offset-gray-900 hover:ring-opacity-30 hover:ring-1"
       :key="item.key"
       :style="item.style"
+      :class="{ 'ring-1 ring-opacity-100': editing.has(item.key) }"
       v-for="item in list"
       @click.stop.prevent="handleItemClick($event, item)"
     >
       <component
-        class="absolute"
         :is="item.tag"
         :class="item.classes"
       >
