@@ -16,10 +16,10 @@ const useMousePos = () => {
     y: computed(() => Math.round(unref(y) + unref(mouse.y))),
   });
 
-  const handleMousewheel = (event) => {
-    x.value += (event.deltaX * .2);
-    y.value += (event.deltaY * .2);
-  };
+  const handleMousewheel = (event) => requestAnimationFrame(() => {
+    x.value += (event.deltaX * .4);
+    y.value += (event.deltaY * .4);
+  });
 
   return {
     x,
@@ -44,31 +44,45 @@ const useListItem = ({ classes, ...item }) => {
     classes: computed(() => Array.from(classList).join(' ')),
 
     style: {
-      top: computed(() => `${unref(item.posY) - pos.screenY}px`),
-      left: computed(() => `${unref(item.posX) - pos.screenX}px`),
+      transform: computed(() => `translate3d(${unref(item.posX) - pos.screenX}px, ${unref(item.posY) - pos.screenY}px, 0)`),
     },
   });
 };
 
-const list = {
-  'Button': useListItem({
-    posX: 300,
-    posY: 80,
-    key: 'Button',
-    tag: 'button',
-    classes: 'border border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline',
-    content: 'Placeholder',
-  }),
+const list = {};
 
-  'Button success': useListItem({
-    posX: 480,
-    posY: 80,
+for (let i = 0; i < 50; i++) {
+  const key = `Button ${i}`;
+
+  list[key] = useListItem({
+    posX: 300,
+    posY: 100 + (80 * i),
+    key,
     tag: 'button',
-    key: 'Button success',
-    classes: 'border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline',
+    classes: 'border border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 transition duration-500 ease select-none :bhoverg-indigo-600 focus:outline-none focus:shadow-outline',
     content: 'Placeholder',
-  }),
-};
+  });
+}
+
+// const list = {
+//   'Button': useListItem({
+//     posX: 300,
+//     posY: 80,
+//     key: 'Button',
+//     tag: 'button',
+//     classes: 'border border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 transition duration-500 ease select-none :bhoverg-indigo-600 focus:outline-none focus:shadow-outline',
+//     content: 'Placeholder',
+//   }),
+
+//   'Button success': useListItem({
+//     posX: 480,
+//     posY: 80,
+//     tag: 'button',
+//     key: 'Button success',
+//     classes: 'border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline',
+//     content: 'Placeholder',
+//   }),
+// };
 
 const editing = reactive(new Set);
 const editingClasses = reactive(new Set);
@@ -166,48 +180,51 @@ const handleAddClass = (event) => {
 </script>
 
 <template functional>
-  <div
-    class="bg-gray-500 px-4 top-0 text-gray-900 absolute"
-  >
-    X {{ pos.x }} Y {{ pos.y }}
-  </div>
-
 <div
-  class="bg-gray-500 px-4 top-8 text-gray-900 absolute"
-  v-if="editing.size > 0"
+  class="bg-darkest w-full h-full overflow-hidden h-screen flex flex-col"
 >
-  <input
-    type="text"
-    class="bg-transparent"
-    placeholder="Add class"
-    @keydown.enter="handleAddClass"
-  />
+  <header
+    class="items-center w-full h-12 flex divide-x border-b border-dark divide-theme-dark"
+  >
+    <span>X {{ pos.x }} Y {{ pos.y }}</span>
+  </header>
 
-  <ul>
-    <li
-      v-for="token in editingClasses.values()"
-      :key="token"
-      class="flex items-center justify-between"
-    >
-      {{ token }}
+  <!-- <div
+    class="px-4 top-8 text-white absolute"
+    v-if="editing.size > 0"
+  >
+    <input
+      type="text"
+      class="bg-transparent"
+      placeholder="Add class"
+      @keydown.enter="handleAddClass"
+    />
 
-      <button
-        class="ml-4"
-        @click="handleRemoveClass(token)"
+    <ul>
+      <li
+        v-for="token in editingClasses.values()"
+        :key="token"
+        class="flex items-center justify-between"
       >
-        X
-      </button>
-    </li>
-  </ul>
-</div>
+        {{ token }}
+
+        <button
+          class="ml-4"
+          @click="handleRemoveClass(token)"
+        >
+          X
+        </button>
+      </li>
+    </ul>
+  </div> -->
 
   <div
     @mousewheel="handleMousewheel"
     @click="handleEditingReset"
-    class="h-screen w-screen bg-gray-800 p-8"
+    class="w-full h-full overflow-hidden bg-blue-100 p-8"
   >
     <div
-      class="absolute ring-offset-2 ring-white ring-offset-gray-900 hover:ring-opacity-30 hover:ring-1"
+      class="relative flex ring-offset-2 ring-white ring-offset-gray-900"
       :key="item.key"
       :style="item.style"
       :class="{ 'ring-1 ring-opacity-100': editing.has(item.key) }"
@@ -222,4 +239,5 @@ const handleAddClass = (event) => {
       </component>
     </div>
   </div>
+</div>
 </template>

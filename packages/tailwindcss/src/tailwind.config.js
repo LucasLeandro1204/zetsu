@@ -7,6 +7,11 @@ module.exports = {
         red: {
           '100': '#0F0',
         },
+
+        'darkest': '#000000',
+        'darker': '#414141',
+        'dark': '#525252',
+        'primary': '#313131',
       },
 
       ringWidth: {
