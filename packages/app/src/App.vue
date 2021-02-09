@@ -44,10 +44,8 @@ watch(root, (root) => {
     return;
   }
   observer.value = new IntersectionObserver((entries) => {
-  requestAnimationFrame(() => {
     entries.forEach(({ isIntersecting, target }) => {
       target.__visibility.value = isIntersecting;
-  });
     });
 }, {
   threshold: [1],
@@ -57,22 +55,12 @@ watch(root, (root) => {
 });
 
 const useListItem = ({ classes, ...item }) => {
-  const visible = ref(false);
-  const el = ref(null);
+  const visible = computed(() => pos.screenX < item.posX);
   const classList = reactive(new Set(classes.split(' ')));
-
-  watch([el, observer], ([element, observer]) => {
-    if (element && observer) {
-      element.__visibility = visible;
-
-      observer.observe(element);
-    }
-  });
 
   return reactive({
     ...item,
 
-    el,
     visible,
     classList,
     classes: computed(() => Array.from(classList).join(' ')),
@@ -264,19 +252,18 @@ provide('app', {
       :key="item.key"
       :style="item.style"
       :class="{ 'ring-1 ring-opacity-100': editing.has(item.key) }"
-      :ref="el => item.el = el"
       v-for="item in list"
       @click.stop.prevent="handleItemClick($event, item)"
     >
-      <div>
-
-      <component
-        :is="item.tag"
+      <div
         v-if="item.visible"
-        :class="item.classes"
       >
-        {{ item.content }}
-      </component>
+        <component
+          :is="item.tag"
+          :class="item.classes"
+        >
+          {{ item.content }}
+        </component>
       </div>
     </div>
   </div>
