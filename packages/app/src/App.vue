@@ -44,7 +44,7 @@ const useListItem = ({ classes, ...item }) => {
     classes: computed(() => Array.from(classList).join(' ')),
 
     style: {
-      transform: computed(() => `translate3d(${unref(item.posX) - pos.screenX}px, ${unref(item.posY) - pos.screenY}px, 0)`),
+      transform: computed(() => `translate3D(${unref(item.posX) - pos.screenX}px, ${unref(item.posY) - pos.screenY}px, 0)`),
     },
   });
 };
@@ -189,7 +189,11 @@ const handleAddClass = (event) => {
     <span class="px-4 font-mono text-xs h-full items-center flex w-48">X: {{ pos.x }} Y: {{ pos.y }}</span>
 
     <div class="px-4">
-      s
+      <span
+        v-if="editing.size > 0"
+      >
+        Editing: {{ editing.size }}
+      </span>
     </div>
   </header>
 
@@ -228,7 +232,7 @@ const handleAddClass = (event) => {
     class="w-full h-full overflow-hidden bg-gradient-to-tr from-darkest to-darker p-8"
   >
     <div
-      class="relative flex ring-offset-2 ring-white ring-offset-gray-900"
+      class="relative flex w-max ring-offset-2 ring-white ring-offset-gray-900"
       :key="item.key"
       :style="item.style"
       :class="{ 'ring-1 ring-opacity-100': editing.has(item.key) }"
