@@ -35,12 +35,45 @@ const {
   handleMousewheel,
 } = useMousePos();
 
+const root = ref(null);
+
+const observer = ref(null);
+
+watch(root, (root) => {
+  if (! root) {
+    return;
+  }
+  observer.value = new IntersectionObserver((entries) => {
+  requestAnimationFrame(() => {
+    entries.forEach(({ isIntersecting, target }) => {
+      target.__visibility.value = isIntersecting;
+  });
+    });
+}, {
+  threshold: [1],
+  root,
+  rootMargin: '50%',
+});
+});
+
 const useListItem = ({ classes, ...item }) => {
+  const visible = ref(false);
+  const el = ref(null);
   const classList = reactive(new Set(classes.split(' ')));
+
+  watch([el, observer], ([element, observer]) => {
+    if (element && observer) {
+      element.__visibility = visible;
+
+      observer.observe(element);
+    }
+  });
 
   return reactive({
     ...item,
 
+    el,
+    visible,
     classList,
     classes: computed(() => Array.from(classList).join(' ')),
 
@@ -223,22 +256,28 @@ provide('app', {
   <div
     @mousewheel="handleMousewheel"
     @click="handleEditingReset"
+    ref="root"
     class="w-full h-full overflow-hidden bg-gradient-to-tr from-darkest to-darker p-8"
   >
     <div
-      class="relative flex w-max ring-offset-2 ring-white ring-offset-gray-900"
+      class="relative h-0 flex w-max ring-offset-2 ring-white ring-offset-gray-900"
       :key="item.key"
       :style="item.style"
       :class="{ 'ring-1 ring-opacity-100': editing.has(item.key) }"
+      :ref="el => item.el = el"
       v-for="item in list"
       @click.stop.prevent="handleItemClick($event, item)"
     >
+      <div>
+
       <component
         :is="item.tag"
+        v-if="item.visible"
         :class="item.classes"
       >
         {{ item.content }}
       </component>
+      </div>
     </div>
   </div>
 </div>
