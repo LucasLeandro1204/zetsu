@@ -116,8 +116,6 @@ watch(
         //
       }
     }
-
-    console.log('afaefaf', editingClasses);
   },
 );
 

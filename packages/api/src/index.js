@@ -7,5 +7,3 @@ http.createServer((req, res) => {
   res.write(test());
   res.end();
 }).listen(3003);
-
-console.log('apipii');
