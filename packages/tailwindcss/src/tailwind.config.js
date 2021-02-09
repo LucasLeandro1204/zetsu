@@ -8,9 +8,9 @@ module.exports = {
           '100': '#0F0',
         },
 
-        'darkest': '#000000',
-        'darker': '#414141',
-        'dark': '#525252',
+        'darkest': '#101010',
+        'darker': '#26282b',
+        'dark': '#353941',
         'primary': '#313131',
       },
 

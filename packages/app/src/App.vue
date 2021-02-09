@@ -181,12 +181,16 @@ const handleAddClass = (event) => {
 
 <template functional>
 <div
-  class="bg-darkest w-full h-full overflow-hidden h-screen flex flex-col"
+  class="w-full h-full h-screen flex flex-col"
 >
   <header
-    class="items-center w-full h-12 flex divide-x border-b border-dark divide-theme-dark"
+    class="text-white bg-gradient-to-tr h-9 from-darkest to-darker w-full flex divide-x border-b border-dark divide-x divide-dark"
   >
-    <span>X {{ pos.x }} Y {{ pos.y }}</span>
+    <span class="px-4 font-mono text-xs h-full items-center flex w-48">X: {{ pos.x }} Y: {{ pos.y }}</span>
+
+    <div class="px-4">
+      s
+    </div>
   </header>
 
   <!-- <div
@@ -221,7 +225,7 @@ const handleAddClass = (event) => {
   <div
     @mousewheel="handleMousewheel"
     @click="handleEditingReset"
-    class="w-full h-full overflow-hidden bg-blue-100 p-8"
+    class="w-full h-full overflow-hidden bg-gradient-to-tr from-darkest to-darker p-8"
   >
     <div
       class="relative flex ring-offset-2 ring-white ring-offset-gray-900"
