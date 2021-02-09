@@ -1,14 +1,18 @@
 <script setup>
 import { inject } from 'vue';
 
-const { pos, editing } = inject('app');
+const { x, y, editing } = inject('app');
 </script>
 
 <template functional>
 <header
-  class="text-white bg-gradient-to-tr h-9 from-darkest to-darker w-full flex divide-x border-b border-dark divide-x divide-dark"
+  class="text-white text-sm bg-gradient-to-tr h-9 from-darkest to-darker w-full flex divide-x border-b border-dark divide-x divide-dark"
 >
-  <span class="px-4 font-mono text-xs h-full items-center flex w-48">X: {{ pos.x }} Y: {{ pos.y }}</span>
+  <span class="px-4 h-full items-center flex">
+    <input class="bg-transparent w-11 mr-1 focus:outline-none" type="text" v-model="x" />
+    x
+    <input class="bg-transparent w-11 ml-1 focus:outline-none text-right" type="text" v-model="y" />
+  </span>
 
   <div class="px-4">
     <span

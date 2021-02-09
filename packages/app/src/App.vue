@@ -4,36 +4,31 @@ import AppHeader from './components/AppHeader.vue';
 import { computed, inject, provide, reactive, ref, unref, watch } from 'vue';
 import Grid from './Grid.vue';
 
-const useMousePos = () => {
+const useScreenPositions = () => {
   const y = ref(0);
   const x = ref(0);
 
   const mouse = useMouse();
 
-  const pos = reactive({
-    x,
-    y,
-    mouseX: computed(() => unref(x) + unref(mouse.x)),
-    mouseY: computed(() => unref(y) + unref(mouse.y)),
-  });
-
   const handleMousewheel = (event) => requestAnimationFrame(() => {
-    x.value += Math.round((event.deltaX * .4));
-    y.value += Math.round((event.deltaY * .4));
+    x.value = Math.max(0, x.value + Math.round((event.deltaX * .4)));
+    y.value = Math.max(0, y.value + Math.round((event.deltaY * .4)));
   });
 
   return {
     x,
     y,
-    pos,
     handleMousewheel,
+    mouseX: computed(() => unref(x) + unref(mouse.x)),
+    mouseY: computed(() => unref(y) + unref(mouse.y)),
   };
 };
 
 const {
-  pos,
+  x,
+  y,
   handleMousewheel,
-} = useMousePos();
+} = useScreenPositions();
 
 const root = ref(null);
 
@@ -42,7 +37,7 @@ const observer = ref(null);
 const { width, height } = useWindowSize();
 
 const useListItem = ({ classes, ...item }) => {
-  const visible = computed(() => pos.x < item.posX);
+  const visible = computed(() => unref(x) < item.posX);
   const classList = reactive(new Set(classes.split(' ')));
 
   return reactive({
@@ -53,7 +48,7 @@ const useListItem = ({ classes, ...item }) => {
     classes: computed(() => Array.from(classList).join(' ')),
 
     style: {
-      transform: computed(() => `translate3D(${unref(item.posX) - pos.x}px, ${unref(item.posY) - pos.y}px, 0)`),
+      transform: computed(() => `translate3D(${unref(item.posX) - unref(x)}px, ${unref(item.posY) - unref(y)}px, 0)`),
     },
   });
 };
@@ -188,7 +183,8 @@ const handleAddClass = (event) => {
 };
 
 provide('app', {
-  pos,
+  x,
+  y,
   editing,
 });
 </script>
