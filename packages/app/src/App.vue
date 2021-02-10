@@ -203,35 +203,6 @@ provide('app', {
       class="h-9 w-full"
     />
 
-  <!-- <div
-    class="px-4 top-8 text-white absolute"
-    v-if="editing.size > 0"
-  >
-    <input
-      type="text"
-      class="bg-transparent"
-      placeholder="Add class"
-      @keydown.enter="handleAddClass"
-    />
-
-    <ul>
-      <li
-        v-for="token in editingClasses.values()"
-        :key="token"
-        class="flex items-center justify-between"
-      >
-        {{ token }}
-
-        <button
-          class="ml-4"
-          @click="handleRemoveClass(token)"
-        >
-          X
-        </button>
-      </li>
-    </ul>
-  </div> -->
-
     <main
       @mousewheel="handleMousewheel"
       @click="handleEditingReset"
@@ -239,7 +210,7 @@ provide('app', {
       class="w-full h-full overflow-hidden bg-gradient-to-tr from-darkest to-darker p-8"
     >
       <div
-        class="relative h-0 flex w-max ring-offset-2 ring-white ring-offset-gray-900"
+        class="relative flex w-max ring-offset-2 ring-white ring-offset-gray-900"
         :key="item.key"
         :style="item.style"
         :class="{ 'ring-1 ring-opacity-100': editing.has(item.key) }"
