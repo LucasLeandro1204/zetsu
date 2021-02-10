@@ -3,8 +3,13 @@ import { reactify, TransitionPresets, useMouse, useTransition, useWindowSize } f
 import AppHeader from './components/AppHeader.vue';
 import Item from './components/Item.vue';
 import AppAside from './components/AppAside.vue';
+import RBush from 'rbush';
 import { computed, inject, provide, reactive, ref, unref, watch } from 'vue';
 import Grid from './Grid.vue';
+
+const tree = new RBush();
+
+
 
 const useScreenPositions = () => {
   const y = ref(0);
@@ -62,7 +67,7 @@ const list = {
     posY: 80,
     key: 'Button',
     tag: 'button',
-    classes: 'border border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 transition duration-500 ease select-none :bhoverg-indigo-600 focus:outline-none focus:shadow-outline',
+    classes: 'border border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline',
     content: 'Placeholder',
   }),
 
@@ -146,21 +151,21 @@ provide('app', {
   class="w-full h-full h-screen flex"
 >
   <AppAside
-    class="w-9 h-full"
+    class="w-9 h-full z-20"
   />
 
   <div
     class="flex-1 flex flex-col h-full"
   >
     <AppHeader
-      class="h-9 w-full"
+      class="h-9 w-full z-20"
     />
 
     <main
       @mousewheel="handleMousewheel"
       @click="handleEditingReset"
       ref="root"
-      class="w-full h-full overflow-hidden bg-gradient-to-tr from-darkest to-darker p-8"
+      class="w-full z-10 h-full overflow-hidden bg-gradient-to-tr from-darkest to-darker p-8"
     >
       <Item
         :key="item.key"

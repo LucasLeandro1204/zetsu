@@ -11,6 +11,7 @@
     "@vuelidate/core": "^2.0.0-alpha.8",
     "@vuelidate/validators": "^2.0.0-alpha.5",
     "@vueuse/core": "^4.0.4",
+    "rbush": "^3.0.1",
     "vue": "^3.0.5",
     "vue-router": "4"
   },
