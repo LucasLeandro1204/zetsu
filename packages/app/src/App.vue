@@ -1,15 +1,11 @@
 <script setup>
-import { reactify, TransitionPresets, useMouse, useTransition, useWindowSize } from '@vueuse/core';
+import { debouncedWatch, reactify, TransitionPresets, useMouse, useTransition, useWindowSize } from '@vueuse/core';
 import AppHeader from './components/AppHeader.vue';
 import Item from './components/Item.vue';
 import AppAside from './components/AppAside.vue';
 import RBush from 'rbush';
 import { computed, inject, provide, reactive, ref, unref, watch } from 'vue';
 import Grid from './Grid.vue';
-
-const tree = new RBush();
-
-
 
 const useScreenPositions = () => {
   const y = ref(0);
@@ -30,6 +26,22 @@ const useScreenPositions = () => {
     mouseY: computed(() => unref(y) + unref(mouse.y)),
   };
 };
+
+const useIndexTree = () => {
+  const tree = new RBush();
+  const toUpdate = reactive(new Set);
+
+  debouncedWatch(() => ([...toUpdate]), (keys) => {
+    // inde xhere
+  }, {
+    // index after 3 secs
+    debounce: 3000,
+  });
+
+  return tree;
+};
+
+const tree = useIndexTree();
 
 const root = ref(null);
 const observer = ref(null);
@@ -56,6 +68,8 @@ const useListItem = ({ classes, ...item }) => {
     classes: computed(() => Array.from(classList).join(' ')),
 
     style: {
+      width: computed(() => `${item.width}px`),
+      height: computed(() => `${item.height}px`),
       transform: computed(() => `translate3D(${unref(item.posX) - unref(x)}px, ${unref(item.posY) - unref(y)}px, 0)`),
     },
   });
@@ -65,6 +79,8 @@ const list = {
   'Button': useListItem({
     posX: 300,
     posY: 80,
+    width: 130,
+    height: 50,
     key: 'Button',
     tag: 'button',
     classes: 'border border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline',
@@ -74,6 +90,8 @@ const list = {
   'Button success': useListItem({
     posX: 480,
     posY: 80,
+    width: 120,
+    height: 42,
     tag: 'button',
     key: 'Button success',
     classes: 'border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline',
