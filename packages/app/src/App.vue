@@ -1,6 +1,7 @@
 <script setup>
 import { reactify, TransitionPresets, useMouse, useTransition, useWindowSize } from '@vueuse/core';
 import AppHeader from './components/AppHeader.vue';
+import Item from './components/Item.vue';
 import AppAside from './components/AppAside.vue';
 import { computed, inject, provide, reactive, ref, unref, watch } from 'vue';
 import Grid from './Grid.vue';
@@ -209,25 +210,12 @@ provide('app', {
       ref="root"
       class="w-full h-full overflow-hidden bg-gradient-to-tr from-darkest to-darker p-8"
     >
-      <div
-        class="relative flex w-max ring-offset-2 ring-white ring-offset-gray-900"
+      <Item
         :key="item.key"
-        :style="item.style"
-        :class="{ 'ring-1 ring-opacity-100': editing.has(item.key) }"
-        v-show="item.visible"
+        :item="item"
         v-for="item in list"
-        @click.stop.prevent="handleItemClick($event, item)"
-      >
-        <div
-        >
-          <component
-            :is="item.tag"
-            :class="item.classes"
-          >
-            {{ item.content }}
-          </component>
-        </div>
-      </div>
+        @click.stop="handleItemClick($event, item)"
+      />
     </main>
   </div>
 </div>
