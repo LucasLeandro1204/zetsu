@@ -4,8 +4,7 @@ import { debouncedWatch, reactify, TransitionPresets, useMouse, useTransition, u
 import AppHeader from './components/AppHeader.vue';
 import Item from './components/Item.vue';
 import AppAside from './components/AppAside.vue';
-import useItem from './composables/useItem';
-import { useScreenItem, useScreenPosition } from './composables/useScreen';
+import { useScreenItem, useScreenPosition } from './composables/screen';
 import RBush from 'rbush';
 
 const root = ref(null);
@@ -14,8 +13,8 @@ const observer = ref(null);
 const editing = reactive(new Set);
 
 const {
-  x,
-  y,
+  screenX,
+  screenY,
   handleMousewheel,
 } = useScreenPosition();
 
@@ -25,6 +24,7 @@ const list = [
     posX: 300,
     height: 50,
     width: 130,
+    tag: 'button',
     key: 'Component A',
   }),
 
@@ -33,6 +33,7 @@ const list = [
     posX: 480,
     width: 120,
     height: 42,
+    tag: 'button',
     key: 'Component B',
   }),
 ];
@@ -68,8 +69,8 @@ const handleItemClick = (event, { key }) => {
 };
 
 provide('app', {
-  x,
-  y,
+  screenX,
+  screenY,
   editing,
 });
 </script>
