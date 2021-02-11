@@ -21,25 +21,19 @@ const {
 
 const list = [
   useScreenItem({
-    posX: 300,
     posY: 80,
-    width: 130,
+    posX: 300,
     height: 50,
-    key: 'Button',
-    tag: 'button',
-    classes: 'border border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline',
-    content: 'Placeholder',
+    width: 130,
+    key: 'Component A',
   }),
 
   useScreenItem({
-    posX: 480,
     posY: 80,
+    posX: 480,
     width: 120,
     height: 42,
-    tag: 'button',
-    key: 'Button success',
-    content: 'Placeholder',
-    classes: 'border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline',
+    key: 'Component B',
   }),
 ];
 
