@@ -1,6 +1,4 @@
-import NotFound from './views/NotFound.vue';
-import User from './views/User/User.vue';
-import Dashboard from './views/Dashboard/Dashboard.vue';
+import Creator from './views/Creator/Creator.vue';
 import { createRouter, createWebHistory } from 'vue-router';
 
 export default createRouter({
@@ -8,20 +6,9 @@ export default createRouter({
 
   routes: [
     {
-      path: '/dashboard',
-      name: 'dashboard',
-      component: Dashboard,
-    },
-
-    {
-      path: '/user',
-      name: 'user',
-      component: User,
-    },
-
-    {
-      path: '/:pathMatch(.*)',
-      component: NotFound,
+      path: '/',
+      name: 'creator',
+      component: Creator,
     },
   ],
 });

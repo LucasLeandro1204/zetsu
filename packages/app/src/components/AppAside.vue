@@ -3,11 +3,11 @@
   class="text-white bg-darkest border-r border-dark"
 >
   <h2
-    class="transform rotate-90"
+    class="transform rotate-90 block whitespace-nowrap m-0 p-0"
   >
     <a
       href="#"
-      class="whitespace-nowrap px-4 text-xl h-9"
+      class="bg-blue-700 block px-4 text-xl"
     >
       ZETSU
     </a>

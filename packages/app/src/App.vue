@@ -77,7 +77,7 @@ provide('app', {
 
 <template functional>
 <div
-  class="w-full h-full h-screen flex"
+  class="w-full h-full h-screen flex bg-gradient-to-tr from-darkest to-darker"
 >
   <AppAside
     class="w-9 h-full z-20"
@@ -90,19 +90,7 @@ provide('app', {
       class="h-9 w-full z-20"
     />
 
-    <main
-      @mousewheel="handleMousewheel"
-      @click="handleEditingReset"
-      ref="root"
-      class="w-full z-10 h-full overflow-hidden bg-gradient-to-tr from-darkest to-darker p-8"
-    >
-      <Item
-        :key="item.key"
-        :item="item"
-        v-for="item in list"
-        @click.stop="handleItemClick($event, item)"
-      />
-    </main>
+    <RouterView />
   </div>
 </div>
 </template>
