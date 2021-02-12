@@ -5,7 +5,6 @@ import AppHeader from './components/AppHeader.vue';
 import Item from './components/Item.vue';
 import AppAside from './components/AppAside.vue';
 import { useScreenItem, useScreenPosition } from './composables/screen';
-import RBush from 'rbush';
 
 const root = ref(null);
 const observer = ref(null);
@@ -24,49 +23,8 @@ const list = [
     posX: 300,
     height: 50,
     width: 130,
-    tag: 'button',
-    key: 'Component A',
-  }),
-
-  useScreenItem({
-    posY: 80,
-    posX: 480,
-    width: 120,
-    height: 42,
-    tag: 'button',
-    key: 'Component B',
   }),
 ];
-
-const handleEditingReset = () => {
-  if (editing.size === 0) {
-    return;
-  }
-
-  editing.clear();
-};
-
-const handleItemClick = (event, { key }) => {
-  if (event.shiftKey) {
-    if (editing.has(key)) {
-      editing.delete(key);
-
-      return;
-    }
-
-    editing.add(key);
-
-    return;
-  }
-
-  if (editing.has(key)) {
-    return;
-  }
-
-  handleEditingReset();
-
-  editing.add(key);
-};
 
 provide('app', {
   screenX,
@@ -76,21 +34,15 @@ provide('app', {
 </script>
 
 <template functional>
-<div
-  class="w-full h-full h-screen flex bg-gradient-to-tr from-darkest to-darker"
+<header
+  class="text-white text-sm border-b border-dark items-center h-8 bg-darkest flex justify-center"
 >
-  <AppAside
-    class="w-9 h-full z-20"
-  />
+  <h1>ZETSU</h1>
+</header>
 
-  <div
-    class="flex-1 flex flex-col h-full"
-  >
-    <AppHeader
-      class="h-9 w-full z-20"
-    />
-
-    <RouterView />
-  </div>
+<div
+  class="w-full h-full flex-1 flex bg-gradient-to-tr from-darkest to-darker"
+>
+  <RouterView />
 </div>
 </template>

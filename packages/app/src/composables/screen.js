@@ -1,5 +1,6 @@
 import { computed, inject, provide, reactive, ref, unref, watch } from 'vue';
 import { debouncedWatch, reactify, TransitionPresets, set, get, useMouse, useTransition, useWindowSize } from '@vueuse/core';
+import RBush from 'rbush';
 
 export const useScreenPosition = () => {
   const { width, height } = useWindowSize();
