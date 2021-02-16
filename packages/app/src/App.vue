@@ -1,36 +1,5 @@
 <script setup>
-import { computed, inject, provide, reactive, ref, unref, watch } from 'vue';
-import { debouncedWatch, reactify, TransitionPresets, useMouse, useTransition, useWindowSize } from '@vueuse/core';
-import AppHeader from './components/AppHeader.vue';
-import Item from './components/Item.vue';
-import AppAside from './components/AppAside.vue';
-import { useScreenItem, useScreenPosition } from './use/screen';
 
-const root = ref(null);
-const observer = ref(null);
-
-const editing = reactive(new Set);
-
-const {
-  screenX,
-  screenY,
-  handleMousewheel,
-} = useScreenPosition();
-
-const list = [
-  useScreenItem({
-    posY: 80,
-    posX: 300,
-    height: 50,
-    width: 130,
-  }),
-];
-
-provide('app', {
-  screenX,
-  screenY,
-  editing,
-});
 </script>
 
 <template functional>
@@ -43,6 +12,14 @@ provide('app', {
 <div
   class="w-full h-full flex-1 flex bg-gradient-to-tr from-darkest to-darker"
 >
-  <RouterView />
+  <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="grid" x="-30" width="32px" height="32px" patternUnits="userSpaceOnUse">
+      <rect width="100%" height="100%" stroke="currentColor" stroke-width="1px"/>
+    </pattern>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#grid)" />
+</svg>
 </div>
 </template>
