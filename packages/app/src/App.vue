@@ -4,7 +4,7 @@ import { debouncedWatch, reactify, TransitionPresets, useMouse, useTransition, u
 import AppHeader from './components/AppHeader.vue';
 import Item from './components/Item.vue';
 import AppAside from './components/AppAside.vue';
-import { useScreenItem, useScreenPosition } from './composables/screen';
+import { useScreenItem, useScreenPosition } from './use/screen';
 
 const root = ref(null);
 const observer = ref(null);
